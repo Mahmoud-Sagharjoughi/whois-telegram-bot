@@ -1,0 +1,20 @@
+{
+  "name": "whois",
+  "version": "1.0.0",
+  "description": "@whois_exp_bot is a simple domain's Expire-Date whois lookup tool.",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "whois",
+    "domains"
+  ],
+  "author": "Mahmoud Sagharjoughi (Mahmoud_hsf)",
+  "license": "MIT",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.24.0",
+    "normalize-date": "0.0.3",
+    "whois-api": "^1.0.2"
+  }
+}
