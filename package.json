@@ -10,7 +10,7 @@
     "whois",
     "domains"
   ],
-  "author": "Mahmoud Sagharjoughi (Mahmoud_hsf)",
+  "author": "Mahmoud Sagharjoughi (Mahmoud_hsf) <mahmood.sa225@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "node-telegram-bot-api": "^0.24.0",
