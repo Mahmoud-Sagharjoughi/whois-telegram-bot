@@ -1,6 +1,6 @@
 #!/bin/nodejs
 
-var TelegramBot = require('node-telegram-bot-api'),
+let TelegramBot = require('node-telegram-bot-api'),
     whois = require('whois-api'),
 	toDate = require('normalize-date'),
     config = require('./config');
@@ -8,7 +8,7 @@ var TelegramBot = require('node-telegram-bot-api'),
         polling: config.bot.polling
     });
 
-var monthDic = {
+let monthDic = {
 	Jan: "1",
 	Feb: "2",
 	Mar: "3",
@@ -23,15 +23,15 @@ var monthDic = {
 	Dec: "12"
 };
 
-var COM = false;
-var actW = false;
+let COM = false;
+let actW = false;
 
 
 bot.on('message', (message) => {
-    var chat_id = message.chat.id;
+    let chat_id = message.chat.id;
 	if (message.text == '/start' && actW == false && COM == false) {
         bot.sendMessage(message.chat.id,'Welcome');
-		var options = {
+		let options = {
 		    reply_markup: JSON.stringify({
 			    inline_keyboard: [
 				    [{ text: 'Whois EXP', callback_data: '1'}]
@@ -53,7 +53,7 @@ bot.on('message', (message) => {
 	} else if (message.text != '/whois' && actW == false && COM == false) {
 				bot.sendMessage(chat_id,'For now I can\'t Understand Please Enter /whois');	
 	} else if (message.text == '/whois' && actW == false && COM == false) {
-				var options = {
+				let options = {
 					reply_markup: JSON.stringify({
 						inline_keyboard: [
 							[{ text: 'Whois EXP', callback_data: '1'}]
@@ -79,19 +79,19 @@ bot.on('message', (message) => {
 						reply_to_message_id: message.message_id
 					});
 					} else {
-						var ToDate = String(toDate((message.date) + '.000'));
-						var newDay = ToDate.substr(8,2);
-						var newMonth = ToDate.substr(4,3);
-						var newYear = ToDate.substr(11,4);
-						var new_Date = new Date(result.expiration_date);
-						var resultDay = new_Date.getDate();
-						var resultMonth = Number(new_Date.getMonth())+1;
-						var resultYear = new_Date.getFullYear();
-						var date1 = new Date(`${monthDic[newMonth]}/${newDay}/${newYear}`);
-						var date2 = new Date(`${resultMonth}/${resultDay}/${resultYear}`);
-						var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-						var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
-						var text = `Site Name: ${message.text}\nExpiration Date: ${result.expiration_date}\n${diffDays} Days to expiration date`;
+						let ToDate = String(toDate((message.date) + '.000'));
+						let newDay = ToDate.substr(8,2);
+						let newMonth = ToDate.substr(4,3);
+						let newYear = ToDate.substr(11,4);
+						let new_Date = new Date(result.expiration_date);
+						let resultDay = new_Date.getDate();
+						let resultMonth = Number(new_Date.getMonth())+1;
+						let resultYear = new_Date.getFullYear();
+						let date1 = new Date(`${monthDic[newMonth]}/${newDay}/${newYear}`);
+						let date2 = new Date(`${resultMonth}/${resultDay}/${resultYear}`);
+						let timeDiff = Math.abs(date2.getTime() - date1.getTime());
+						let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+						let text = `Site Name: ${message.text}\nExpiration Date: ${result.expiration_date}\n${diffDays} Days to expiration date`;
 						bot.sendMessage(chat_id,text, {
 							reply_to_message_id: message.message_id
 						});
